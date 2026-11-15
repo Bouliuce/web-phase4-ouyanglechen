@@ -12,12 +12,30 @@
     <nav>
       <button class="tab-btn active" data-tab="list">报告列表</button>
       <button class="tab-btn" data-tab="about">关于</button>
+      <!-- AI 助手按钮放在 nav 里面，和上面两个并排 -->
+      <button class="tab-btn" data-tab="chat">AI 助手</button>
     </nav>
   </header>
 
   <main>
     <section id="list" class="tab-panel active">
       <h2>本学期报告</h2>
+      
+      <!-- 新增数据区 -->
+      <div class="add-form">
+        <input type="text" id="title-input" placeholder="输入报告名称" />
+        <select id="status-input">
+          <option value="未开始">未开始</option>
+          <option value="进行中">进行中</option>
+          <option value="已完成">已完成</option>
+        </select>
+        <button id="add-btn">新增</button>
+      </div>
+
+      <!-- 状态提示区 -->
+      <div id="state-msg" style="color: #666; margin: 10px 0;"></div>
+
+      <!-- 列表区 -->
       <ul id="report-list"></ul>
     </section>
 
@@ -25,10 +43,21 @@
       <h2>关于</h2>
       <p>这是 26 级第四阶段任务 1 的静态页面。</p>
     </section>
+    
+    <!-- AI 对话面板（加上这个） -->
+    <section id="chat" class="tab-panel">
+      <h2>AI 对话助手</h2>
+      <div id="chat-box" style="border: 1px solid #ccc; height: 300px; overflow-y: auto; padding: 10px; margin-bottom: 10px; background: #f9f9f9; border-radius: 4px;"></div>
+      <div style="display: flex; gap: 10px;">
+        <input type="text" id="chat-input" placeholder="问我关于实验报告的问题..." style="flex: 1; padding: 8px;" />
+        <button id="send-btn">发送</button>
+        <button id="stop-btn" style="display: none; background: #ff4d4f; color: white;">停止生成</button>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>© 2026 你的名字</p>
+    <p>© 2026 欧阳乐晨</p>
   </footer>
 
   <script src="app.js"></script>

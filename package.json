@@ -1,0 +1,28 @@
+{
+  "name": "web-phase4-ouyanglechen",
+  "version": "1.0.0",
+  "description": "| 方法 | 路径 | 参数 (JSON) | 返回示例 |\r | :--- | :--- | :--- | :--- |\r | GET | `/api/reports` | 无 | `{ \"code\": 200, \"data\": [ { \"id\": 1, \"title\": \"报告\", \"status\": \"已完成\" } ], \"msg\": \"success\" }` |\r | POST | `/api/reports` | `{ \"title\": \"字符串\", \"status\": \"字符串\" }` | `{ \"code\": 200, \"data\": { \"id\": 1234, \"title\": \"报告\", \"status\": \"已完成\" }, \"msg\": \"新增成功\" }` |\r | DELETE | `/api/reports/:id` | URL 传参：`:id` 为数字 | `{ \"code\": 200, \"data\": null, \"msg\": \"删除成功\" }` |",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bouliuce/web-phase4-ouyanglechen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Bouliuce/web-phase4-ouyanglechen/issues"
+  },
+  "homepage": "https://github.com/Bouliuce/web-phase4-ouyanglechen#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "openai": "^7.57.0"
+  }
+}
