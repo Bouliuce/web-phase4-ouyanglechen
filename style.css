@@ -108,3 +108,26 @@ li {
 /* 删除：红底白字 */
 .btn-del { background: #dc2626; border-color: #dc2626; color: #fff; }
 .btn-del:hover { background: #b91c1c; border-color: #b91c1c; }
+/* 1. 让整个网页内容居中，不要拉得太宽 */
+body {
+  max-width: 800px;
+  margin: 0 auto; /* 左右自动居中 */
+  padding: 20px;
+  background-color: #f4f7f6; /* 淡淡的灰蓝色背景，比纯白好看 */
+  font-family: "Microsoft YaHei", sans-serif; /* 换成微软雅黑 */
+}
+
+/* 2. 把主区域做成一张白色的卡片 */
+main {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* 加一点淡淡的阴影 */
+}
+
+/* 3. 给导航按钮加点间距 */
+nav {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px; /* 按钮之间留空隙 */
+}
