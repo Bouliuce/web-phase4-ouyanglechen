@@ -57,6 +57,30 @@ app.delete('/api/reports/:id', (req, res) => {
   res.json({ code: 200, msg: '删除成功' });
 });
 
+// 4. PUT 修改接口
+app.put('/api/reports/:id', (req, res) => {
+  const id = Number(req.params.id);
+  const { title, status } = req.body || {};
+
+  if (!title || !status) {
+    return res.status(400).json({ code: 400, msg: '参数缺失' });
+  }
+
+  const list = readData();
+  const index = list.findIndex(item => item.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ code: 404, msg: '找不到这条数据' });
+  }
+
+  // 更新数据并落盘
+  list[index].title = title;
+  list[index].status = status;
+  writeData(list);
+
+  res.json({ code: 200, msg: '修改成功' });
+});
+
 // ================= AI 工具调用与对话接口 =================
 
 // 1. 定义工具

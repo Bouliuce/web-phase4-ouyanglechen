@@ -43,9 +43,12 @@ async function fetchList() {
       stateMsgEl.textContent = '';
       data.forEach(item => {
         const li = document.createElement('li');
-        li.innerHTML = `
-          <span>${item.title} —— ${item.status}</span>
-          <button onclick="deleteReport(${item.id})" style="margin-left: 10px; color: red; cursor: pointer;">删除</button>
+         li.innerHTML = `
+          <span class="report-title">${item.title} —— ${item.status}</span>
+          <span class="report-actions">
+            <button class="btn btn-edit" onclick="editReport(${item.id}, '${item.title}', '${item.status}')">修改</button>
+            <button class="btn btn-del" onclick="deleteReport(${item.id})">删除</button>
+          </span>
         `;
         listEl.appendChild(li);
       });
@@ -197,3 +200,28 @@ sendBtn.addEventListener('click', async () => {
 stopBtn.addEventListener('click', () => {
   if (controller) controller.abort();
 });
+
+// 5. 修改功能
+window.editReport = async function(id, oldTitle, oldStatus) {
+  const newTitle = prompt('请输入新的报告名称：', oldTitle);
+  if (newTitle === null) return; // 点了取消
+  
+  const newStatus = prompt('请输入新的状态（未开始/进行中/已完成）：', oldStatus);
+  if (newStatus === null) return;
+
+  try {
+    const res = await fetch(`${API_BASE_URL}/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: newTitle, status: newStatus })
+    });
+    const json = await res.json();
+    if (json.code === 200) {
+      fetchList(); // 改完刷新列表
+    } else {
+      alert(json.msg);
+    }
+  } catch (error) {
+    alert('修改失败，请检查网络');
+  }
+};
